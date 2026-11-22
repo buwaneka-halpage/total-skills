@@ -110,7 +110,7 @@ def main():
             if c := changes[f].get("from"):
                 d = git(repo, "diff", "-M", base, a.head, "--", c, f, check=False)
             lines = d.splitlines()
-            body = [l for l in lines if not l.startswith(("diff --git", "index ", "--- ", "+++ "))]
+            body = [l for l in lines if not l.startswith(("diff --git", "index ", "--- ", "+++ ", "new file mode", "deleted file mode", "similarity index", "old mode", "new mode"))]
             if len(body) > a.max_diff_lines:
                 body = body[:a.max_diff_lines] + [f"… {len(body) - a.max_diff_lines} more lines"]
             diffs[f] = "\n".join(body)
@@ -188,6 +188,8 @@ function squarify(items,x,y,w,h){const out=[];let rest=items.slice().sort((a,b)=
   if(w>=h){const rw=s/h;for(const it of row){const ih=it.a/rw;out.push({...it,x,y:y+off,w:rw,h:ih});off+=ih}x+=rw;w-=rw}
   else{const rh=s/w;for(const it of row){const iw=it.a/rh;out.push({...it,x:x+off,y,w:iw,h:rh});off+=iw}y+=rh;h-=rh}
   rest=rest.slice(row.length)}return out}
+const GENERIC=/^(SKILL\.md|README\.md|index\.[jt]sx?|__init__\.py|main\.\w+|mod\.rs|package\.json|Dockerfile|pom\.xml)$/;
+function label(p){const parts=p.split('/'),b=parts.pop();return GENERIC.test(b)&&parts.length?parts.pop()+'/'+b.replace(/\.md$/,''):b}
 const map=document.getElementById('map');let selEl=null;
 function draw(){map.innerHTML='';const W=map.clientWidth,H=map.clientHeight;
  // weight: sqrt(size) so small files stay visible; changed files get a boost so they're findable
@@ -196,9 +198,9 @@ function draw(){map.innerHTML='';const W=map.clientWidth,H=map.clientHeight;
   const lb=document.createElement('div');lb.className='lbl';lb.textContent=g.k;dv.appendChild(lb);map.appendChild(dv);
   const pad=14;for(const r of squarify(g.fs,g.x+2,g.y+pad,Math.max(g.w-4,1),Math.max(g.h-pad-2,1))){const f=r.f,el=document.createElement('div');el.className='f';
    Object.assign(el.style,{left:r.x+'px',top:r.y+'px',width:Math.max(r.w,1)+'px',height:Math.max(r.h,1)+'px'});const c=color(f);
-   if(c){el.style.background=css(c.c);el.style.opacity=c.o}else el.classList.add('un');
+   if(c){el.style.background=`color-mix(in srgb, var(${c.c}) ${Math.round(c.o*100)}%, var(--panel))`;el.style.color=c.o>.6?'#fff':'var(--ink)'}else el.classList.add('un');
    el.title=f.path+(f.status?` (${f.status} +${f.add} −${f.del})`:'')+(hot?` (${f.commits} commits)`:'');
-   if(r.w>50&&r.h>14)el.textContent=f.path.split('/').pop();el.onclick=()=>show(f,el);map.appendChild(el)}}}
+   if(r.w>50&&r.h>14)el.textContent=label(f.path);el.onclick=()=>show(f,el);map.appendChild(el)}}}
 function show(f,el){if(selEl)selEl.classList.remove('sel');selEl=el;el.classList.add('sel');document.getElementById('dt').textContent=f.path;
  const m=document.getElementById('dm');m.textContent=hot?`${f.commits} commits · ${f.size} bytes`:f.status?`${f.status}${f.from?' from '+f.from:''} · +${f.add} −${f.del}`:'unchanged';
  const pre=document.getElementById('dd');pre.innerHTML='';const diff=(D.diffs||{})[f.path];
