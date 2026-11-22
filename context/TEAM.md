@@ -19,9 +19,15 @@ Skills read this file. Fill in every TODO. Keep it short and factual. Agents fol
 # make build
 ```
 
+## Source control & collaboration
+- Host: GitHub (issues, PRs, Actions). CLI: `gh`.
+- Posting policy: **draft-first**. Agent writes issues/PRs/comments to `drafts/`, user approves, then agent posts.
+- Branching strategy: per project in `docs/git-strategy.md` (see `choose-git-strategy`).
+- Author may resolve PR threads: TODO yes/no
+
 ## Conventions
-- Branch naming: TODO
-- Commit message format: TODO
+- Branch naming: `<type>/<issue#>-<slug>` unless the project's git-strategy says otherwise
+- Commit message format: `type(scope): subject` + `Refs #<issue>`
 - Where specs/plans live: docs/specs/ (TODO confirm)
 
 ## Review checklist (team-specific)
@@ -37,4 +43,5 @@ Skills read this file. Fill in every TODO. Keep it short and factual. Agents fol
 
 ## Hard rules
 - Never commit secrets or credentials.
+- Approved cloud/agent plugins (and whether telemetry is allowed): TODO
 - TODO: data classification, export control, safety or compliance constraints that apply.
