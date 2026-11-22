@@ -23,7 +23,7 @@ Post: `gh issue create --title â€¦ --body-file drafts/issues/<slug>.md --label â
 
 ## From a plan (after `plan-slices`)
 
-One issue per task, each a vertical slice. Record **blocked by** links. Show the list as a table (title, FR IDs, blocked by, size) for approval, then post in dependency order and write the issue numbers back into `PLAN.md`.
+One issue per task, each a vertical slice. Record **blocked by** links. Show the list as a table (title, FR IDs, blocked by, size) for approval, then post in dependency order and write the issue numbers back into `PLAN.md`. Then hand off to `project-management` to add them to the project board with dates.
 
 ## Triage
 

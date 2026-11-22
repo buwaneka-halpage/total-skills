@@ -23,7 +23,7 @@ PHASES 1–8: DELIVER
   1 grill-the-plan       gather requirements
   2 write-srs            SRS with FR / NFR / REG IDs
   3 write-architecture   SAD
-  4 plan-slices          tasks  ──→ issues (draft → GitHub)
+  4 plan-slices          tasks  ──→ issues (draft → GitHub) ──→ project-management (Gantt + board)
   5 build-in-slices      TDD    ──→ git-workflow (branch, commit, sync)
   6 review               ──→ visualize-changes, open-pr, address-pr-comments, resolve-conflicts
   7 ship-to-production   ──→ ci-cd (only if in scope)
@@ -40,6 +40,7 @@ ANY TIME: diagnose (broken), encode-lesson (learned something), visualize-change
 - Small change → `git-workflow` → `build-in-slices` → `review` → `open-pr`.
 - Bug → `diagnose` → `review` → `open-pr`.
 - "What changed?" / large PR / after a pull → `visualize-changes`.
+- Timeline, Gantt, "where are we?", status report → `project-management`.
 - PR feedback → `address-pr-comments`. Conflicts → `resolve-conflicts`. CI red → `ci-cd`.
 
 Use the lightest path that fits. Scale documents to the change.

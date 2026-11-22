@@ -16,6 +16,12 @@ T<n>. <title>
   Proves:    the test(s) that show it works
   Depends:   T<x> or none
   Size:      S (<1h) / M (half day). Split anything bigger.
+  Phase:     Foundation | Build | Verify | Release (or the project's own phases)
+  Estimate:  working days, including review and testing (used for the Gantt chart)
+  Owner:     who (optional)
+  Status:    todo | in progress | blocked | done
+  Start:     YYYY-MM-DD (only if fixed; otherwise scheduled from Depends)
+  Issue:     #<n> (filled in by `issues`)
 ```
 
 Rules:
@@ -23,4 +29,5 @@ Rules:
 - **Existing code:** T1 is usually "characterization tests for the area we'll touch" (see `build-in-slices`).
 - Put the riskiest slice early so surprises show up before most of the work is done.
 - Migrations get their own tasks, in expand → migrate → contract order.
-- Check that every FR/NFR ID is covered by at least one task. Show the plan to the user before building.
+- Check that every FR/NFR ID is covered by at least one task.
+- Render the schedule with `project-management` (Gantt) and show the plan **and** the Gantt to the user before building.

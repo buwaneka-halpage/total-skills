@@ -20,8 +20,9 @@ Produce `docs/environment.md`: the single place the agent and the user look up "
 3. **Cloud provider:** decide from the signals table. Evidence beats guesses: list every file that supports the conclusion. Several providers is a valid answer.
 4. **CI/CD:** which system, which workflows, what they run (build, test, lint, deploy), which branches and environments they deploy to, and required checks.
 5. **Source control & tracking:** remote host (`git remote -v`), default branch, issue/PR templates, CODEOWNERS, labels in use (`gh label list` if available).
-6. **Environments & secrets handling:** dev/test/staging/prod names and URLs from config and pipelines. Record *where* secrets come from (Key Vault, Secrets Manager, GitHub secrets), never their values.
-7. **Ask the user** only for what files can't tell you: who owns production, change approval, whether CI/CD is in scope for this work.
+6. **Project management:** which tool holds the schedule (GitHub Projects, Jira, Azure Boards, Linear, Asana, Notion, MS Project…). Use the detection list in `../project-management/references/adapters.md`.
+7. **Environments & secrets handling:** dev/test/staging/prod names and URLs from config and pipelines. Record *where* secrets come from (Key Vault, Secrets Manager, GitHub secrets), never their values.
+8. **Ask the user** only for what files can't tell you: who owns production, change approval, whether CI/CD is in scope for this work.
 
 ## Output: `docs/environment.md`
 

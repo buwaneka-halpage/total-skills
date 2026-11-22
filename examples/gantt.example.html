@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Example: production report export</title><style>
+:root{--bg:#fbfaf8;--panel:#fff;--ink:#1d1d1b;--muted:#6b6a66;--line:#e4e2dc;--grid:#f0eee9;--wk:#f6f4f0;
+ --todo:#7b8794;--active:#2b6cb0;--done:#2f8f5b;--blocked:#c8483b;--crit:#c98a1b;--today:#c8483b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--panel:#1f1f1d;--ink:#ecebe7;--muted:#a19f99;--line:#34332f;
+ --grid:#262624;--wk:#1b1b1a;--todo:#8d99a6;--active:#6ea8e6;--done:#4fb57e;--blocked:#e0695c;--crit:#d9a441;--today:#e0695c}}
+:root[data-theme="dark"]{--bg:#161615;--panel:#1f1f1d;--ink:#ecebe7;--muted:#a19f99;--line:#34332f;--grid:#262624;--wk:#1b1b1a;
+ --todo:#8d99a6;--active:#6ea8e6;--done:#4fb57e;--blocked:#e0695c;--crit:#d9a441;--today:#e0695c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+header{max-width:1400px;margin:auto;padding:20px 16px 8px}h1{font-size:20px;margin:0 0 4px}.sub{color:var(--muted)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 4px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 12px}
+.stat b{display:block;font-size:18px}.stat span{color:var(--muted);font-size:12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:8px}.sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.wrap{max-width:1400px;margin:auto;padding:8px 16px 32px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:auto}
+svg text{fill:var(--ink);font-size:12px}.ph{font-weight:600}.mut{fill:var(--muted);font-size:11px}
+.bar{cursor:default}.bar:hover rect.b{filter:brightness(1.12)}#tip{position:fixed;pointer-events:none;background:var(--panel);border:1px solid var(--line);
+ border-radius:8px;padding:8px 10px;font-size:12px;max-width:320px;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none}
+</style></head><body>
+<header><h1 id="t"></h1><div class="sub" id="s"></div><div class="stats" id="st"></div>
+<div class="legend"><span><i class="sw" style="background:var(--done)"></i>done</span><span><i class="sw" style="background:var(--active)"></i>in progress</span>
+<span><i class="sw" style="background:var(--todo)"></i>to do</span><span><i class="sw" style="background:var(--blocked)"></i>blocked</span>
+<span><i class="sw" style="background:none;border:2px solid var(--crit)"></i>critical path</span><span><i class="sw" style="background:var(--today);width:2px"></i>today</span></div></header>
+<div class="wrap"><div class="card"><svg id="g"></svg></div></div><div id="tip"></div>
+<script id="data" type="application/json">{"title": "Example: production report export", "today": "2026-11-22", "tasks": [{"id": "T1", "title": "Characterization tests for report module", "depends": [], "days": 2.0, "phase": "Foundation", "status": "done", "owner": "Buwaneka", "start": "2026-11-16", "end": "", "satisfies": "REG-1", "issue": "41", "_start": "2026-11-16", "_end": "2026-11-17", "_state": "done", "_crit": true}, {"id": "T2", "title": "Add export API endpoint", "depends": ["T1"], "days": 3.0, "phase": "Build", "status": "in progress", "owner": "", "start": "", "end": "", "satisfies": "FR-1, FR-2", "issue": "42", "_start": "2026-11-18", "_end": "2026-11-20", "_state": "active", "_crit": true}, {"id": "T3", "title": "CSV formatter with unit tests", "depends": ["T1"], "days": 2.0, "phase": "Build", "status": "todo", "owner": "", "start": "", "end": "", "satisfies": "FR-3", "issue": "43", "_start": "2026-11-18", "_end": "2026-11-19", "_state": "todo", "_crit": false}, {"id": "T4", "title": "Schema migration: export_jobs table", "depends": ["T1"], "days": 1.0, "phase": "Build", "status": "blocked", "owner": "", "start": "", "end": "", "satisfies": "NFR-2", "issue": "44", "_start": "2026-11-18", "_end": "2026-11-18", "_state": "blocked", "_crit": false}, {"id": "T5", "title": "Wire UI download button", "depends": ["T2", "T3"], "days": 2.0, "phase": "Build", "status": "todo", "owner": "", "start": "", "end": "", "satisfies": "FR-4", "issue": "45", "_start": "2026-11-23", "_end": "2026-11-24", "_state": "todo", "_crit": true}, {"id": "T6", "title": "Integration and performance tests", "depends": ["T4", "T5"], "days": 2.0, "phase": "Verify", "status": "todo", "owner": "", "start": "", "end": "", "satisfies": "NFR-1", "issue": "46", "_start": "2026-11-25", "_end": "2026-11-26", "_state": "todo", "_crit": true}, {"id": "T7", "title": "Staging deploy and UAT", "depends": ["T6"], "days": 3.0, "phase": "Release", "status": "todo", "owner": "", "start": "", "end": "", "satisfies": "", "issue": "47", "_start": "2026-11-27", "_end": "2026-12-01", "_state": "todo", "_crit": true}, {"id": "T8", "title": "Production rollout and final report", "depends": ["T7"], "days": 1.0, "phase": "Release", "status": "todo", "owner": "", "start": "", "end": "", "satisfies": "", "issue": "48", "_start": "2026-12-02", "_end": "2026-12-02", "_state": "todo", "_crit": true}]}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent),T=D.tasks;const day=864e5,P=s=>new Date(s+'T00:00:00Z');
+document.getElementById('t').textContent=D.title;
+const min=new Date(Math.min(...T.map(t=>P(t._start))));const max=new Date(Math.max(...T.map(t=>P(t._end))));
+min.setUTCDate(min.getUTCDate()-min.getUTCDay()+1-7*(min.getUTCDay()===0));const span=Math.round((max-min)/day)+3;
+const n=s=>T.filter(t=>t._state===s).length;document.getElementById('s').textContent=`${T[0]._start} → ${T.reduce((a,t)=>t._end>a?t._end:a,'')} · ${T.length} tasks`;
+document.getElementById('st').innerHTML=[['Done',n('done')],['In progress',n('active')],['To do',n('todo')],['Blocked',n('blocked')],['Critical path',T.filter(t=>t._crit).length+' tasks']]
+ .map(([k,v])=>`<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
+const phases=[];for(const t of T){const k=t.phase||'Tasks';let p=phases.find(x=>x.k===k);if(!p)phases.push(p={k,ts:[]});p.ts.push(t)}
+const svg=document.getElementById('g'),NS='http://www.w3.org/2000/svg';
+function el(tag,at,parent=svg){const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);parent.appendChild(e);return e}
+function draw(){svg.innerHTML='';const LW=Math.min(300,Math.max(170,innerWidth*.28)),dw=Math.max(14,Math.min(36,(Math.max(innerWidth-48,600)-LW)/span)),RH=26,TOP=58;
+ const rows=phases.reduce((s,p)=>s+1+p.ts.length,0),W=LW+span*dw+20,H=TOP+rows*RH+10;svg.setAttribute('width',W);svg.setAttribute('height',H);
+ const X=d=>LW+Math.round((P(d)-min)/day)*dw;
+ for(let i=0;i<span;i++){const d=new Date(+min+i*day),x=LW+i*dw,wd=d.getUTCDay();if(wd===0||wd===6)el('rect',{x,y:TOP-6,width:dw,height:H-TOP,fill:'var(--wk)'});
+  if(wd===1){el('line',{x1:x,x2:x,y1:TOP-16,y2:H,stroke:'var(--line)'});const tx=el('text',{x:x+3,y:TOP-22,class:'mut'});tx.textContent=d.toISOString().slice(5,10)}
+  if(d.getUTCDate()===1||i===0){const tx=el('text',{x:x+3,y:14,class:'ph'});tx.textContent=d.toLocaleString('en',{month:'long',year:'numeric',timeZone:'UTC'})}}
+ const pos={};let y=TOP;
+ for(const p of phases){const ps=p.ts.reduce((a,t)=>t._start<a?t._start:a,'9999'),pe=p.ts.reduce((a,t)=>t._end>a?t._end:a,'');
+  const tx=el('text',{x:8,y:y+17,class:'ph'});tx.textContent=p.k;el('rect',{x:X(ps),y:y+9,width:X(pe)+dw-X(ps),height:6,rx:3,fill:'var(--muted)',opacity:.5});y+=RH;
+  for(const t of p.ts){const g=el('g',{class:'bar'});const lb=el('text',{x:16,y:y+17},g);const s=`${t.id} ${t.title}`;lb.textContent=s.length>LW/7?s.slice(0,LW/7-1)+'…':s;
+   const x=X(t._start),w=X(t._end)+dw-x;el('rect',{class:'b',x,y:y+5,width:w,height:RH-10,rx:4,fill:`var(--${t._state==='active'?'active':t._state})`},g);
+   if(t._crit)el('rect',{x:x-1,y:y+4,width:w+2,height:RH-8,rx:5,fill:'none',stroke:'var(--crit)','stroke-width':2},g);
+   pos[t.id]={x1:x,x2:x+w,y:y+RH/2};g.onmousemove=e=>tip(e,t);g.onmouseleave=()=>tipEl.style.display='none';y+=RH}}
+ for(const t of T)for(const d of t.depends||[]){const a=pos[d],b=pos[t.id];if(!a||!b)continue;const mx=Math.max(a.x2+6,b.x1-6);
+  el('path',{d:`M${a.x2},${a.y} H${mx} V${b.y} H${b.x1-2}`,fill:'none',stroke:'var(--muted)','stroke-width':1.2,opacity:.7,'marker-end':'url(#ah)'})}
+ const defs=el('defs',{});const m=el('marker',{id:'ah',viewBox:'0 0 6 6',refX:5,refY:3,markerWidth:6,markerHeight:6,orient:'auto'},defs);el('path',{d:'M0,0 L6,3 L0,6 z',fill:'var(--muted)'},m);
+ if(D.today>=T.reduce((a,t)=>t._start<a?t._start:a,'9999')&&P(D.today)<=new Date(+min+span*day)){const tx=X(D.today)+dw/2;el('line',{x1:tx,x2:tx,y1:TOP-12,y2:H,stroke:'var(--today)','stroke-width':2});
+  const l=el('text',{x:tx+4,y:TOP-4,class:'mut'});l.textContent='today'}}
+const tipEl=document.getElementById('tip');
+function tip(e,t){tipEl.style.display='block';tipEl.style.left=Math.min(e.clientX+14,innerWidth-330)+'px';tipEl.style.top=(e.clientY+14)+'px';tipEl.innerHTML='';
+ const add=(k,v)=>{if(!v||(Array.isArray(v)&&!v.length))return;const d=document.createElement('div');const b=document.createElement('b');b.textContent=k+': ';d.append(b,Array.isArray(v)?v.join(', '):String(v));tipEl.appendChild(d)};
+ add(t.id,t.title);add('Dates',`${t._start} → ${t._end} (${t.days} working day${t.days==1?'':'s'})`);add('Status',t.status);add('Owner',t.owner);
+ add('Depends on',t.depends);add('Requirements',t.satisfies);add('Issue',t.issue&&'#'+t.issue);if(t._crit)add('Note','on the critical path: a delay here delays the end date')}
+draw();addEventListener('resize',()=>{clearTimeout(window._r);window._r=setTimeout(draw,120)});
+</script></body></html>

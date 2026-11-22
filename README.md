@@ -16,7 +16,7 @@ with GitHub workflow, CI/CD and visual code understanding built in.
 | 1 Requirements | `grill-the-plan` | agreed decisions |
 | 2 SRS | `write-srs` | `SRS.md` (FR / NFR / REG IDs) |
 | 3 Architecture | `write-architecture` | `SAD.md` |
-| 4 Plan | `plan-slices`, `issues` | `PLAN.md`, GitHub issues (draft-first) |
+| 4 Plan | `plan-slices`, `issues`, `project-management` | `PLAN.md`, GitHub issues, project board, Gantt chart |
 | 5 Build | `build-in-slices`, `git-workflow`, `diagnose` | code + tests, clean commits |
 | 6 Review | `review`, `visualize-changes`, `open-pr`, `address-pr-comments`, `resolve-conflicts` | PR, change map |
 | 7 Release | `ship-to-production`, `ci-cd` | release note |
@@ -26,6 +26,7 @@ with GitHub workflow, CI/CD and visual code understanding built in.
 Plus:
 - `hooks/git-guard.py`: blocks force-push, `reset --hard`, `clean -f`, `branch -D`, direct pushes to main/develop/release, `gh pr merge`, and changing branch protection.
 - `scripts/change-map.py`: interactive HTML change map / hotspot map from any git range (Python stdlib only).
+- `scripts/gantt.py`: interactive Gantt (critical path, dependencies, status) + Mermaid gantt, from `PLAN.md`, JSON or a GitHub Project.
 
 ## Setup
 1. Fill in `context/TEAM.md`.
@@ -40,6 +41,12 @@ Plus:
 ```bash
 python3 scripts/change-map.py --repo /path/to/project --base origin/main --head HEAD --out changes.html
 python3 scripts/change-map.py --repo /path/to/project --hotspots --since "1 year ago" --out hotspots.html
+```
+
+## Gantt chart without an agent
+```bash
+python3 scripts/gantt.py --plan docs/<feature>/PLAN.md --start 2026-12-01 --out gantt.html --mermaid gantt.md
+python3 scripts/gantt.py --github-project <org> <project-number> --out status.html
 ```
 
 ## Adding a skill

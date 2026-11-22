@@ -28,6 +28,9 @@
 ## Source control
 - Host / repo: | Default branch: | Protection / required checks: | Templates / CODEOWNERS:
 
+## Project management
+- Tool: | Project/board URL: | Gantt view: | Access (CLI/MCP): 
+
 ## Environments
 | Name | Purpose | How deployed | Secrets from |
 |---|---|---|---|
@@ -36,6 +39,7 @@
 - CI/CD scope: none | existing-dont-touch | existing-extend | create-new
 - Cloud plugin(s) installed: 
 - Branching strategy: <name>. See docs/git-strategy.md
+- PM tool: <GitHub Projects | Jira | …> (all writes draft-first)
 - Issue/PR posting: draft-first (agent drafts, user approves before posting)
 
 ## Open questions

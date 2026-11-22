@@ -17,6 +17,7 @@ Save to `docs/<feature>/REPORT.md`. Base every claim on evidence: commits, test 
 ## 3. Regression: REG-* items from the SRS and how each was confirmed
 ## 4. Deviations: differences from SRS/SAD and why (approved by whom)
 ## 5. Test summary: counts, coverage delta, test types, anything not tested and why
+## 5b. Schedule: baseline vs actual Gantt (from `project-management`), slips and their causes
 ## 6. Release: environments, dates, rollout, rollback procedure
 ## 7. Known issues & follow-ups
 ## 8. Lessons learned: then run `encode-lesson` for each

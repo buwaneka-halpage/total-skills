@@ -24,6 +24,7 @@ Skills read this file. Fill in every TODO. Keep it short and factual. Agents fol
 - Posting policy: **draft-first**. Agent writes issues/PRs/comments to `drafts/`, user approves, then agent posts.
 - Branching strategy: per project in `docs/git-strategy.md` (see `choose-git-strategy`).
 - Author may resolve PR threads: TODO yes/no
+- Project management tool: GitHub Projects (default). Other tools used in some projects: TODO (Jira / Azure Boards / MS Project …)
 
 ## Conventions
 - Branch naming: `<type>/<issue#>-<slug>` unless the project's git-strategy says otherwise
