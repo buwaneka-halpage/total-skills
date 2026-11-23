@@ -364,3 +364,9 @@ context/TEAM.md   your team's rules (fill this in)
 examples/         sample PLAN.md and Gantt outputs
 docs/media/       video cover images
 ```
+
+---
+
+## License
+
+[MIT](LICENSE)

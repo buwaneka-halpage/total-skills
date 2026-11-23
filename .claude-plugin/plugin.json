@@ -2,5 +2,6 @@
   "name": "total-skills",
   "version": "0.1.0",
   "description": "Engineering workflow skills for our team: plan, build, verify, review and ship production code.",
-  "skills": "./skills"
+  "skills": "./skills",
+  "license": "MIT"
 }
