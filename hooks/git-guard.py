@@ -3,7 +3,14 @@
 Exit code 2 blocks the command and shows the reason to the agent, which must then ask the user."""
 import json, re, sys
 
-PROTECTED = ("main", "master", "develop", "release/")
+# Exact branch names, plus prefixes ending in "/" that protect a whole namespace.
+PROTECTED = ("main", "master", "develop", "dev", "release/")
+_exact = [re.escape(p) for p in PROTECTED if not p.endswith("/")]
+_prefix = [re.escape(p) + r"[\w./-]+" for p in PROTECTED if p.endswith("/")]
+# A push target is a whole word: optional "src:" (e.g. HEAD:main) and optional refs/heads/,
+# then the branch, then whitespace or the end of the command. So "dev" is protected but
+# "dev-tools", "maintenance-fix" and "feat/dev" are not.
+PROTECTED_REF = (r"\s(?:\S*:)?(?:refs/heads/)?(?:" + "|".join(_exact + _prefix) + r")(?=\s|$|[;&|])")
 RULES = [
     (r"\bgit\s+push\b[^;&|]*\s(--force(?!-with-lease)|-f\b)", "force push (use --force-with-lease, and only with user approval)"),
     (r"\bgit\s+reset\s+[^;&|]*--hard", "git reset --hard discards work"),
@@ -11,8 +18,7 @@ RULES = [
     (r"\bgit\s+branch\s+[^;&|]*-D\b", "git branch -D deletes unmerged work"),
     (r"\bgit\s+checkout\s+[^;&|]*--\s+\.", "git checkout -- . discards all local changes"),
     (r"\bgit\s+restore\s+[^;&|]*(\s\.|--staged\s+\.)", "git restore . discards all local changes"),
-    (r"\bgit\s+push\b[^;&|]*\s(origin\s+)?(" + "|".join(re.escape(p) for p in PROTECTED) + r")[\w./-]*\s*($|[;&|])",
-     "direct push to a protected branch (open a PR instead)"),
+    (r"\bgit\s+push\b[^;&|]*?" + PROTECTED_REF, "direct push to a protected branch (open a PR instead)"),
     (r"\bgh\s+pr\s+merge\b", "merging a PR needs explicit user approval"),
     (r"\bgh\s+api\b[^;&|]*branches/[^;&|]*/protection[^;&|]*(-X|--method)\s*(PUT|DELETE|PATCH)", "changing branch protection"),
 ]
