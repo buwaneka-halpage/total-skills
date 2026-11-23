@@ -329,18 +329,19 @@ In a plan, `--start` applies only to tasks without a fixed `Start:` date. Every 
 [![The complete guide](docs/media/guide-cover.jpg)](https://github.com/buwaneka-halpage/total-skills/releases/tag/videos-v1)
 <!-- /VIDEO:GUIDE -->
 
-| Chapter | Covers |
-|---|---|
-| What total-skills is | the problem, skills, lifecycle, documents, the router, the eight rules |
-| Install and set up | plugin install, TEAM.md, git guard, draft-first |
-| Phase zero: discover | discover-environment, query mode, map-codebase, visualize-codebase, choose-git-strategy |
-| Requirements and design | grill-the-plan, write-srs, regression items, write-architecture, seams |
-| Plan and track | vertical slices, task fields, issues, Gantt chart, PM tools, tracking |
-| Build | test-first loop, legacy code, house rules, git-workflow, diagnose |
-| Review and pull requests | review, visualize-changes, open-pr, address-pr-comments, resolve-conflicts |
-| Ship and close | ship-to-production, ci-cd, final-report, encode-lesson |
-| Scenarios | new feature, small change, bug, legacy project, status, and more |
-| Why use it / Get started | advantages, when to skip, limits, first steps |
+| Time | Chapter | Covers |
+|---|---|---|
+| 0:00 | What total-skills is | the problem, skills, lifecycle, documents, the router, the eight rules |
+| 1:44 | Install and set up | plugin install, TEAM.md, git guard, draft-first |
+| 2:47 | Phase zero: discover | discover-environment, query mode, map-codebase, visualize-codebase, choose-git-strategy |
+| 4:19 | Requirements and design | grill-the-plan, write-srs, regression items, write-architecture, seams |
+| 5:44 | Plan and track | vertical slices, task fields, issues, Gantt chart, PM tools, tracking |
+| 7:22 | Build | test-first loop, legacy code, house rules, git-workflow, diagnose |
+| 8:43 | Review and pull requests | review, visualize-changes, open-pr, address-pr-comments, resolve-conflicts |
+| 10:01 | Ship and close | ship-to-production, ci-cd, final-report, encode-lesson |
+| 11:06 | Scenarios | new feature, small change, bug, legacy project, status, and more |
+| 12:25 | Why use it | advantages, when to skip, limits |
+| 13:34 | Get started | first steps |
 
 Both videos are also downloadable, with subtitles, from the [videos release](https://github.com/buwaneka-halpage/total-skills/releases/tag/videos-v1). They were made with [explainroo](https://www.explainroo.com/).
 
