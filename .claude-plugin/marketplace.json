@@ -1,0 +1,11 @@
+{
+  "name": "total-skills",
+  "owner": { "name": "buwaneka-halpage" },
+  "plugins": [
+    {
+      "name": "total-skills",
+      "source": "./",
+      "description": "Engineering workflow skills for our team: plan, build, verify, review and ship production code."
+    }
+  ]
+}
