@@ -7,7 +7,7 @@
 <!-- VIDEO:SHORT -->
 **▶ Two-minute overview**
 
-[![Two-minute overview](docs/media/overview-cover.jpg)](https://github.com/buwaneka-halpage/total-skills/releases/tag/videos-v1)
+https://github.com/user-attachments/assets/b850a557-d1fe-46b9-947a-32813abca38e
 <!-- /VIDEO:SHORT -->
 
 ---
